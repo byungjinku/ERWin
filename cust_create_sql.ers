@@ -1,0 +1,1505 @@
+
+CREATE TABLE BOOK
+(
+	BOOK_NO              CHAR(18) NOT NULL ,
+	PLSCMPN_BIZR_NO      CHAR(18) NOT NULL ,
+	BIZ                  CHAR(18) NOT NULL ,
+	BOOKN                CHAR(18) NULL ,
+	BOOK_ORDER           CHAR(18) NULL ,
+	AUTHR                CHAR(18) NULL ,
+	PLSCMPN              CHAR(18) NULL ,
+	PBLICTE_DT           CHAR(18) NULL ,
+	NETPRC               CHAR(18) NULL ,
+	APP_DSCNT            CHAR(18) NULL ,
+	CNTRTC_NO            CHAR(18) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKµµ¼­ ON BOOK
+(BOOK_NO   ASC,PLSCMPN_BIZR_NO   ASC);
+
+ALTER TABLE BOOK
+	ADD CONSTRAINT  XPKµµ¼­ PRIMARY KEY (BOOK_NO,PLSCMPN_BIZR_NO);
+
+CREATE TABLE CNTRTC
+(
+	CNTRTC_NO            CHAR(18) NOT NULL ,
+	PLSCMPN_BIZR_NO      CHAR(18) NOT NULL ,
+	BIZR_NO              CHAR(18) NULL ,
+	PLSCMPNN             CHAR(18) NULL ,
+	CNTR_DT              CHAR(18) NULL ,
+	MNMP_RAT             CHAR(18) NULL 
+);
+
+CREATE UNIQUE INDEX XPK°è¾à¼­ ON CNTRTC
+(CNTRTC_NO   ASC,PLSCMPN_BIZR_NO   ASC);
+
+ALTER TABLE CNTRTC
+	ADD CONSTRAINT  XPK°è¾à¼­ PRIMARY KEY (CNTRTC_NO,PLSCMPN_BIZR_NO);
+
+CREATE TABLE PLSCMPN
+(
+	PLSCMPN_BIZR_NO      CHAR(18) NOT NULL ,
+	PLSCMPN_NAME         CHAR(18) NULL ,
+	PLSCMPN_TEL_NO       CHAR(18) NULL ,
+	PLSCMPN_ADRES        CHAR(18) NULL ,
+	DELNG_BANK_CD        CHAR(18) NULL ,
+	ACNUT_NO_MANAGE      CHAR(18) NULL ,
+	NEW_BOOK             CHAR(18) NULL ,
+	NEW_ADVRTS           CHAR(18) NULL ,
+	INVNTRY_STTUS        CHAR(18) NULL ,
+	BOOK_SALE_STTUS      CHAR(18) NULL 
+);
+
+CREATE UNIQUE INDEX XPKÃâÆÇ»ç ON PLSCMPN
+(PLSCMPN_BIZR_NO   ASC);
+
+ALTER TABLE PLSCMPN
+	ADD CONSTRAINT  XPKÃâÆÇ»ç PRIMARY KEY (PLSCMPN_BIZR_NO);
+
+CREATE TABLE SM_DTLS
+(
+	EXCCLC_NO            CHAR(18) NOT NULL ,
+	ORDER_TOTAMT         CHAR(18) NULL ,
+	ORDER_BOOK_COUNT     CHAR(18) NULL ,
+	DLVY_EXCCLC_CT       CHAR(18) NULL 
+);
+
+CREATE UNIQUE INDEX XPKÁý°è³»¿ª ON SM_DTLS
+(EXCCLC_NO   ASC);
+
+ALTER TABLE SM_DTLS
+	ADD CONSTRAINT  XPKÁý°è³»¿ª PRIMARY KEY (EXCCLC_NO);
+
+CREATE TABLE ¹è¼Û°ü¸®
+(
+	¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ CHAR(18) NOT NULL ,
+	¹è¼Û¹øÈ£             CHAR(18) NOT NULL ,
+	ÁÖ¹®¹øÈ£             CHAR(18) NOT NULL ,
+	EXCCLC_NO            CHAR(18) NOT NULL ,
+	»ç¾÷ÀÚ¸í             CHAR(18) NULL ,
+	¹è¼Û¾÷Ã¼_ÀüÈ­¹øÈ£    CHAR(18) NULL ,
+	¹è¼Û¾÷Ã¼ÁÖ¼Ò         CHAR(18) NULL 
+);
+
+CREATE UNIQUE INDEX XPK¹è¼Û°ü¸® ON ¹è¼Û°ü¸®
+(¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£   ASC,¹è¼Û¹øÈ£   ASC,ÁÖ¹®¹øÈ£   ASC,EXCCLC_NO   ASC);
+
+ALTER TABLE ¹è¼Û°ü¸®
+	ADD CONSTRAINT  XPK¹è¼Û°ü¸® PRIMARY KEY (¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£,¹è¼Û¹øÈ£,ÁÖ¹®¹øÈ£,EXCCLC_NO);
+
+CREATE TABLE ¹è¼Û¿äÃ»¼­
+(
+	¹è¼Û¹øÈ£             CHAR(18) NOT NULL ,
+	ÁÖ¹®¹øÈ£             CHAR(18) NOT NULL ,
+	EXCCLC_NO            CHAR(18) NOT NULL ,
+	¹è¼ÛÀÏ½Ã             CHAR(18) NULL ,
+	¹è¼ÛÁö_ÁÖ¼Ò          CHAR(18) NULL ,
+	¹è¼ÛÁö_ÀüÈ­¹øÈ£      CHAR(18) NULL ,
+	Á÷Á¢¹è¼Û             CHAR(18) NULL ,
+	°£Á¢¹è¼Û             CHAR(18) NULL 
+);
+
+CREATE UNIQUE INDEX XPK¹è¼Û¿äÃ»¼­ ON ¹è¼Û¿äÃ»¼­
+(¹è¼Û¹øÈ£   ASC,ÁÖ¹®¹øÈ£   ASC,EXCCLC_NO   ASC);
+
+ALTER TABLE ¹è¼Û¿äÃ»¼­
+	ADD CONSTRAINT  XPK¹è¼Û¿äÃ»¼­ PRIMARY KEY (¹è¼Û¹øÈ£,ÁÖ¹®¹øÈ£,EXCCLC_NO);
+
+CREATE TABLE ¹è¼ÛÁ¤»ê
+(
+	EXCCLC_NO            CHAR(18) NOT NULL ,
+	¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ CHAR(18) NOT NULL ,
+	¹è¼Û¹øÈ£             CHAR(18) NOT NULL ,
+	ÁÖ¹®¹øÈ£             CHAR(18) NOT NULL ,
+	Á¤»êÀÏÀÚ             CHAR(18) NULL ,
+	Á¤»ê´ã´çÀÚ           CHAR(18) NULL ,
+	Á¤»ê±Ý¾×             CHAR(18) NULL 
+);
+
+CREATE UNIQUE INDEX XPK¹è¼ÛÁ¤»ê ON ¹è¼ÛÁ¤»ê
+(EXCCLC_NO   ASC,¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£   ASC,¹è¼Û¹øÈ£   ASC,ÁÖ¹®¹øÈ£   ASC);
+
+ALTER TABLE ¹è¼ÛÁ¤»ê
+	ADD CONSTRAINT  XPK¹è¼ÛÁ¤»ê PRIMARY KEY (EXCCLC_NO,¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£,¹è¼Û¹øÈ£,ÁÖ¹®¹øÈ£);
+
+CREATE TABLE ºÎÈ¸¿ø
+(
+	È¸¿ø¹øÈ£             CHAR(18) NOT NULL ,
+	ÀÓ½Ãµî·Ï¹øÈ£_°ü¸®    CHAR(18) NULL ,
+	°¡ÀÔ°æ·Î³»¿ë_°ü¸®    CHAR(18) NULL 
+);
+
+CREATE UNIQUE INDEX XPKºÎÈ¸¿ø ON ºÎÈ¸¿ø
+(È¸¿ø¹øÈ£   ASC);
+
+ALTER TABLE ºÎÈ¸¿ø
+	ADD CONSTRAINT  XPKºÎÈ¸¿ø PRIMARY KEY (È¸¿ø¹øÈ£);
+
+CREATE TABLE Á¤È¸¿ø
+(
+	È¸¿ø¹øÈ£             CHAR(18) NOT NULL ,
+	Ãë¹Ì¸í_°ü¸®          CHAR(18) NULL ,
+	»ýÀÏÀÏÀÚ_°ü¸®        CHAR(18) NULL 
+);
+
+CREATE UNIQUE INDEX XPKÁ¤È¸¿ø ON Á¤È¸¿ø
+(È¸¿ø¹øÈ£   ASC);
+
+ALTER TABLE Á¤È¸¿ø
+	ADD CONSTRAINT  XPKÁ¤È¸¿ø PRIMARY KEY (È¸¿ø¹øÈ£);
+
+CREATE TABLE ÁÖ¹®¼­¾ç½Ä
+(
+	ÁÖ¹®¹øÈ£             CHAR(18) NOT NULL ,
+	EXCCLC_NO            CHAR(18) NOT NULL ,
+	ÁÖ¹®ÀÏÀÚ             CHAR(18) NULL ,
+	°áÁ¦¹æ¹ý             CHAR(18) NULL ,
+	±¸¸Å°¡°Ý             CHAR(18) NULL ,
+	°³¼ö                 CHAR(18) NULL ,
+	ÁÖ¹®¸ñ·Ï             CHAR(18) NULL ,
+	È¸¿ø¹øÈ£             CHAR(18) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKÁÖ¹®¼­¾ç½Ä ON ÁÖ¹®¼­¾ç½Ä
+(ÁÖ¹®¹øÈ£   ASC,EXCCLC_NO   ASC);
+
+ALTER TABLE ÁÖ¹®¼­¾ç½Ä
+	ADD CONSTRAINT  XPKÁÖ¹®¼­¾ç½Ä PRIMARY KEY (ÁÖ¹®¹øÈ£,EXCCLC_NO);
+
+CREATE TABLE ÁöÇÏÃ¶»óÁ¡
+(
+	ÁöÇÏÃ¶»ç¾÷ÀÚ¹øÈ£     CHAR(18) NOT NULL ,
+	¹è¼Û¹øÈ£             CHAR(18) NOT NULL ,
+	ÁÖ¹®¹øÈ£             CHAR(18) NOT NULL ,
+	EXCCLC_NO            CHAR(18) NOT NULL ,
+	»ç¾÷ÀÚ¸í             CHAR(18) NULL ,
+	ÁöÇÏÃ¶»óÁ¡_ÀüÈ­¹øÈ£  CHAR(18) NULL ,
+	ÁöÇÏÃ¶¿ª             CHAR(18) NULL ,
+	¿ª³»_À§Ä¡            CHAR(18) NULL 
+);
+
+CREATE UNIQUE INDEX XPKÁöÇÏÃ¶»óÁ¡ ON ÁöÇÏÃ¶»óÁ¡
+(ÁöÇÏÃ¶»ç¾÷ÀÚ¹øÈ£   ASC,¹è¼Û¹øÈ£   ASC,ÁÖ¹®¹øÈ£   ASC,EXCCLC_NO   ASC);
+
+ALTER TABLE ÁöÇÏÃ¶»óÁ¡
+	ADD CONSTRAINT  XPKÁöÇÏÃ¶»óÁ¡ PRIMARY KEY (ÁöÇÏÃ¶»ç¾÷ÀÚ¹øÈ£,¹è¼Û¹øÈ£,ÁÖ¹®¹øÈ£,EXCCLC_NO);
+
+CREATE TABLE È¸¿ø
+(
+	È¸¿ø¹øÈ£             CHAR(18) NOT NULL ,
+	ÁÖ¹Îµî·Ï¹øÈ£         CHAR(18) NULL ,
+	È¸¿øÁÖ¼Ò             CHAR(18) NULL ,
+	ÀüÈ­¹øÈ£             CHAR(18) NULL ,
+	ÀüÀÚ¸ÞÀÏ_ID          CHAR(18) NULL ,
+	ÈÞ´ëÆù¹øÈ£           CHAR(18) NULL ,
+	°áÁ¦¹æ¹ý             CHAR(18) NULL ,
+	È¸¿øÆ÷ÀÎÆ®           CHAR(18) NULL ,
+	È¸¿øÅ¸ÀÔ_FK_         CHAR(18) NULL 
+);
+
+CREATE UNIQUE INDEX XPKÈ¸¿ø ON È¸¿ø
+(È¸¿ø¹øÈ£   ASC);
+
+ALTER TABLE È¸¿ø
+	ADD CONSTRAINT  XPKÈ¸¿ø PRIMARY KEY (È¸¿ø¹øÈ£);
+
+ALTER TABLE BOOK
+	ADD (CONSTRAINT R_31 FOREIGN KEY (PLSCMPN_BIZR_NO) REFERENCES PLSCMPN (PLSCMPN_BIZR_NO));
+
+ALTER TABLE BOOK
+	ADD (CONSTRAINT R_33 FOREIGN KEY (CNTRTC_NO, BIZ) REFERENCES CNTRTC (CNTRTC_NO, PLSCMPN_BIZR_NO));
+
+ALTER TABLE CNTRTC
+	ADD (CONSTRAINT R_24 FOREIGN KEY (PLSCMPN_BIZR_NO) REFERENCES PLSCMPN (PLSCMPN_BIZR_NO));
+
+ALTER TABLE ¹è¼Û°ü¸®
+	ADD (FOREIGN KEY (¹è¼Û¹øÈ£, ÁÖ¹®¹øÈ£, EXCCLC_NO) REFERENCES ¹è¼Û¿äÃ»¼­(¹è¼Û¹øÈ£, ÁÖ¹®¹øÈ£, EXCCLC_NO) ON DELETE CASCADE);
+
+ALTER TABLE ¹è¼Û¿äÃ»¼­
+	ADD (CONSTRAINT R_10 FOREIGN KEY (ÁÖ¹®¹øÈ£, EXCCLC_NO) REFERENCES ÁÖ¹®¼­¾ç½Ä (ÁÖ¹®¹øÈ£, EXCCLC_NO));
+
+ALTER TABLE ¹è¼ÛÁ¤»ê
+	ADD (CONSTRAINT R_95 FOREIGN KEY (¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£, ¹è¼Û¹øÈ£, ÁÖ¹®¹øÈ£, EXCCLC_NO) REFERENCES ¹è¼Û°ü¸® (¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£, ¹è¼Û¹øÈ£, ÁÖ¹®¹øÈ£, EXCCLC_NO));
+
+ALTER TABLE ºÎÈ¸¿ø
+	ADD (FOREIGN KEY (È¸¿ø¹øÈ£) REFERENCES È¸¿ø(È¸¿ø¹øÈ£) ON DELETE CASCADE);
+
+ALTER TABLE Á¤È¸¿ø
+	ADD (FOREIGN KEY (È¸¿ø¹øÈ£) REFERENCES È¸¿ø(È¸¿ø¹øÈ£) ON DELETE CASCADE);
+
+ALTER TABLE ÁÖ¹®¼­¾ç½Ä
+	ADD (CONSTRAINT R_9 FOREIGN KEY (È¸¿ø¹øÈ£) REFERENCES È¸¿ø (È¸¿ø¹øÈ£));
+
+ALTER TABLE ÁÖ¹®¼­¾ç½Ä
+	ADD (CONSTRAINT R_23 FOREIGN KEY (EXCCLC_NO) REFERENCES SM_DTLS (EXCCLC_NO));
+
+ALTER TABLE ÁöÇÏÃ¶»óÁ¡
+	ADD (FOREIGN KEY (¹è¼Û¹øÈ£, ÁÖ¹®¹øÈ£, EXCCLC_NO) REFERENCES ¹è¼Û¿äÃ»¼­(¹è¼Û¹øÈ£, ÁÖ¹®¹øÈ£, EXCCLC_NO) ON DELETE CASCADE);
+
+CREATE  TRIGGER tI_BOOK BEFORE INSERT ON BOOK for each row
+-- ERwin Builtin Trigger
+-- INSERT trigger on BOOK 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* CNTRTC  BOOK on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="0001f987", PARENT_OWNER="", PARENT_TABLE="CNTRTC"
+    CHILD_OWNER="", CHILD_TABLE="BOOK"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_33", FK_COLUMNS="CNTRTC_NO""BIZ" */
+    SELECT count(*) INTO NUMROWS
+      FROM CNTRTC
+      WHERE
+        /* %JoinFKPK(:%New,CNTRTC," = "," AND") */
+        :new.CNTRTC_NO = CNTRTC.CNTRTC_NO AND
+        :new.BIZ = CNTRTC.PLSCMPN_BIZR_NO;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert BOOK because CNTRTC does not exist.'
+      );
+    END IF;
+
+    /* ERwin Builtin Trigger */
+    /* PLSCMPN  BOOK on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="PLSCMPN"
+    CHILD_OWNER="", CHILD_TABLE="BOOK"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_31", FK_COLUMNS="PLSCMPN_BIZR_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM PLSCMPN
+      WHERE
+        /* %JoinFKPK(:%New,PLSCMPN," = "," AND") */
+        :new.PLSCMPN_BIZR_NO = PLSCMPN.PLSCMPN_BIZR_NO;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert BOOK because PLSCMPN does not exist.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_BOOK AFTER UPDATE ON BOOK for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on BOOK 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* CNTRTC  BOOK on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00020008", PARENT_OWNER="", PARENT_TABLE="CNTRTC"
+    CHILD_OWNER="", CHILD_TABLE="BOOK"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_33", FK_COLUMNS="CNTRTC_NO""BIZ" */
+  SELECT count(*) INTO NUMROWS
+    FROM CNTRTC
+    WHERE
+      /* %JoinFKPK(:%New,CNTRTC," = "," AND") */
+      :new.CNTRTC_NO = CNTRTC.CNTRTC_NO AND
+      :new.BIZ = CNTRTC.PLSCMPN_BIZR_NO;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update BOOK because CNTRTC does not exist.'
+    );
+  END IF;
+
+  /* ERwin Builtin Trigger */
+  /* PLSCMPN  BOOK on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="PLSCMPN"
+    CHILD_OWNER="", CHILD_TABLE="BOOK"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_31", FK_COLUMNS="PLSCMPN_BIZR_NO" */
+  SELECT count(*) INTO NUMROWS
+    FROM PLSCMPN
+    WHERE
+      /* %JoinFKPK(:%New,PLSCMPN," = "," AND") */
+      :new.PLSCMPN_BIZR_NO = PLSCMPN.PLSCMPN_BIZR_NO;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update BOOK because PLSCMPN does not exist.'
+    );
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER  tD_CNTRTC AFTER DELETE ON CNTRTC for each row
+-- ERwin Builtin Trigger
+-- DELETE trigger on CNTRTC 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* CNTRTC  BOOK on parent delete restrict */
+    /* ERWIN_RELATION:CHECKSUM="0000dd3b", PARENT_OWNER="", PARENT_TABLE="CNTRTC"
+    CHILD_OWNER="", CHILD_TABLE="BOOK"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_33", FK_COLUMNS="CNTRTC_NO""BIZ" */
+    SELECT count(*) INTO NUMROWS
+      FROM BOOK
+      WHERE
+        /*  %JoinFKPK(BOOK,:%Old," = "," AND") */
+        BOOK.CNTRTC_NO = :old.CNTRTC_NO AND
+        BOOK.BIZ = :old.PLSCMPN_BIZR_NO;
+    IF (NUMROWS > 0)
+    THEN
+      raise_application_error(
+        -20001,
+        'Cannot delete CNTRTC because BOOK exists.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tI_CNTRTC BEFORE INSERT ON CNTRTC for each row
+-- ERwin Builtin Trigger
+-- INSERT trigger on CNTRTC 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* PLSCMPN  CNTRTC on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="0000efa6", PARENT_OWNER="", PARENT_TABLE="PLSCMPN"
+    CHILD_OWNER="", CHILD_TABLE="CNTRTC"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_24", FK_COLUMNS="PLSCMPN_BIZR_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM PLSCMPN
+      WHERE
+        /* %JoinFKPK(:%New,PLSCMPN," = "," AND") */
+        :new.PLSCMPN_BIZR_NO = PLSCMPN.PLSCMPN_BIZR_NO;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert CNTRTC because PLSCMPN does not exist.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_CNTRTC AFTER UPDATE ON CNTRTC for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on CNTRTC 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* CNTRTC  BOOK on parent update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00022c7d", PARENT_OWNER="", PARENT_TABLE="CNTRTC"
+    CHILD_OWNER="", CHILD_TABLE="BOOK"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_33", FK_COLUMNS="CNTRTC_NO""BIZ" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.CNTRTC_NO <> :new.CNTRTC_NO OR 
+    :old.PLSCMPN_BIZR_NO <> :new.PLSCMPN_BIZR_NO
+  THEN
+    SELECT count(*) INTO NUMROWS
+      FROM BOOK
+      WHERE
+        /*  %JoinFKPK(BOOK,:%Old," = "," AND") */
+        BOOK.CNTRTC_NO = :old.CNTRTC_NO AND
+        BOOK.BIZ = :old.PLSCMPN_BIZR_NO;
+    IF (NUMROWS > 0)
+    THEN 
+      raise_application_error(
+        -20005,
+        'Cannot update CNTRTC because BOOK exists.'
+      );
+    END IF;
+  END IF;
+
+  /* ERwin Builtin Trigger */
+  /* PLSCMPN  CNTRTC on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="PLSCMPN"
+    CHILD_OWNER="", CHILD_TABLE="CNTRTC"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_24", FK_COLUMNS="PLSCMPN_BIZR_NO" */
+  SELECT count(*) INTO NUMROWS
+    FROM PLSCMPN
+    WHERE
+      /* %JoinFKPK(:%New,PLSCMPN," = "," AND") */
+      :new.PLSCMPN_BIZR_NO = PLSCMPN.PLSCMPN_BIZR_NO;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update CNTRTC because PLSCMPN does not exist.'
+    );
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER  tD_PLSCMPN AFTER DELETE ON PLSCMPN for each row
+-- ERwin Builtin Trigger
+-- DELETE trigger on PLSCMPN 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* PLSCMPN  BOOK on parent delete restrict */
+    /* ERWIN_RELATION:CHECKSUM="0001af64", PARENT_OWNER="", PARENT_TABLE="PLSCMPN"
+    CHILD_OWNER="", CHILD_TABLE="BOOK"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_31", FK_COLUMNS="PLSCMPN_BIZR_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM BOOK
+      WHERE
+        /*  %JoinFKPK(BOOK,:%Old," = "," AND") */
+        BOOK.PLSCMPN_BIZR_NO = :old.PLSCMPN_BIZR_NO;
+    IF (NUMROWS > 0)
+    THEN
+      raise_application_error(
+        -20001,
+        'Cannot delete PLSCMPN because BOOK exists.'
+      );
+    END IF;
+
+    /* ERwin Builtin Trigger */
+    /* PLSCMPN  CNTRTC on parent delete restrict */
+    /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="PLSCMPN"
+    CHILD_OWNER="", CHILD_TABLE="CNTRTC"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_24", FK_COLUMNS="PLSCMPN_BIZR_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM CNTRTC
+      WHERE
+        /*  %JoinFKPK(CNTRTC,:%Old," = "," AND") */
+        CNTRTC.PLSCMPN_BIZR_NO = :old.PLSCMPN_BIZR_NO;
+    IF (NUMROWS > 0)
+    THEN
+      raise_application_error(
+        -20001,
+        'Cannot delete PLSCMPN because CNTRTC exists.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_PLSCMPN AFTER UPDATE ON PLSCMPN for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on PLSCMPN 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* PLSCMPN  BOOK on parent update restrict */
+  /* ERWIN_RELATION:CHECKSUM="0002175d", PARENT_OWNER="", PARENT_TABLE="PLSCMPN"
+    CHILD_OWNER="", CHILD_TABLE="BOOK"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_31", FK_COLUMNS="PLSCMPN_BIZR_NO" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.PLSCMPN_BIZR_NO <> :new.PLSCMPN_BIZR_NO
+  THEN
+    SELECT count(*) INTO NUMROWS
+      FROM BOOK
+      WHERE
+        /*  %JoinFKPK(BOOK,:%Old," = "," AND") */
+        BOOK.PLSCMPN_BIZR_NO = :old.PLSCMPN_BIZR_NO;
+    IF (NUMROWS > 0)
+    THEN 
+      raise_application_error(
+        -20005,
+        'Cannot update PLSCMPN because BOOK exists.'
+      );
+    END IF;
+  END IF;
+
+  /* ERwin Builtin Trigger */
+  /* PLSCMPN  CNTRTC on parent update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="PLSCMPN"
+    CHILD_OWNER="", CHILD_TABLE="CNTRTC"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_24", FK_COLUMNS="PLSCMPN_BIZR_NO" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.PLSCMPN_BIZR_NO <> :new.PLSCMPN_BIZR_NO
+  THEN
+    SELECT count(*) INTO NUMROWS
+      FROM CNTRTC
+      WHERE
+        /*  %JoinFKPK(CNTRTC,:%Old," = "," AND") */
+        CNTRTC.PLSCMPN_BIZR_NO = :old.PLSCMPN_BIZR_NO;
+    IF (NUMROWS > 0)
+    THEN 
+      raise_application_error(
+        -20005,
+        'Cannot update PLSCMPN because CNTRTC exists.'
+      );
+    END IF;
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER  tD_SM_DTLS AFTER DELETE ON SM_DTLS for each row
+-- ERwin Builtin Trigger
+-- DELETE trigger on SM_DTLS 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* SM_DTLS  ÁÖ¹®¼%¾ç½Ä on parent delete restrict */
+    /* ERWIN_RELATION:CHECKSUM="0000da34", PARENT_OWNER="", PARENT_TABLE="SM_DTLS"
+    CHILD_OWNER="", CHILD_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_23", FK_COLUMNS="EXCCLC_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM ÁÖ¹®¼%¾ç½Ä
+      WHERE
+        /*  %JoinFKPK(ÁÖ¹®¼%¾ç½Ä,:%Old," = "," AND") */
+        ÁÖ¹®¼%¾ç½Ä.EXCCLC_NO = :old.EXCCLC_NO;
+    IF (NUMROWS > 0)
+    THEN
+      raise_application_error(
+        -20001,
+        'Cannot delete SM_DTLS because ÁÖ¹®¼%¾ç½Ä exists.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_SM_DTLS AFTER UPDATE ON SM_DTLS for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on SM_DTLS 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* SM_DTLS  ÁÖ¹®¼%¾ç½Ä on parent update restrict */
+  /* ERWIN_RELATION:CHECKSUM="0001069a", PARENT_OWNER="", PARENT_TABLE="SM_DTLS"
+    CHILD_OWNER="", CHILD_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_23", FK_COLUMNS="EXCCLC_NO" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.EXCCLC_NO <> :new.EXCCLC_NO
+  THEN
+    SELECT count(*) INTO NUMROWS
+      FROM ÁÖ¹®¼%¾ç½Ä
+      WHERE
+        /*  %JoinFKPK(ÁÖ¹®¼%¾ç½Ä,:%Old," = "," AND") */
+        ÁÖ¹®¼%¾ç½Ä.EXCCLC_NO = :old.EXCCLC_NO;
+    IF (NUMROWS > 0)
+    THEN 
+      raise_application_error(
+        -20005,
+        'Cannot update SM_DTLS because ÁÖ¹®¼%¾ç½Ä exists.'
+      );
+    END IF;
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER  tD_¹è¼Û°ü¸® AFTER DELETE ON ¹è¼Û°ü¸® for each row
+-- ERwin Builtin Trigger
+-- DELETE trigger on ¹è¼Û°ü¸® 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* ¹è¼Û°ü¸®  ¹è¼ÛÁ¤»ê on parent delete restrict */
+    /* ERWIN_RELATION:CHECKSUM="00011fc1", PARENT_OWNER="", PARENT_TABLE="¹è¼Û°ü¸®"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼ÛÁ¤»ê"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_95", FK_COLUMNS="¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£""¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM ¹è¼ÛÁ¤»ê
+      WHERE
+        /*  %JoinFKPK(¹è¼ÛÁ¤»ê,:%Old," = "," AND") */
+        ¹è¼ÛÁ¤»ê.¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ = :old.¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ AND
+        ¹è¼ÛÁ¤»ê.¹è¼Û¹øÈ£ = :old.¹è¼Û¹øÈ£ AND
+        ¹è¼ÛÁ¤»ê.ÁÖ¹®¹øÈ£ = :old.ÁÖ¹®¹øÈ£ AND
+        ¹è¼ÛÁ¤»ê.EXCCLC_NO = :old.EXCCLC_NO;
+    IF (NUMROWS > 0)
+    THEN
+      raise_application_error(
+        -20001,
+        'Cannot delete ¹è¼Û°ü¸® because ¹è¼ÛÁ¤»ê exists.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tI_¹è¼Û°ü¸® BEFORE INSERT ON ¹è¼Û°ü¸® for each row
+-- ERwin Builtin Trigger
+-- INSERT trigger on ¹è¼Û°ü¸® 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* ¹è¼Û¿äÃ»¼%  ¹è¼Û°ü¸® on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="00011a65", PARENT_OWNER="", PARENT_TABLE="¹è¼Û¿äÃ»¼%"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼Û°ü¸®"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM ¹è¼Û¿äÃ»¼%
+      WHERE
+        /* %JoinFKPK(:%New,¹è¼Û¿äÃ»¼%," = "," AND") */
+        :new.¹è¼Û¹øÈ£ = ¹è¼Û¿äÃ»¼%.¹è¼Û¹øÈ£ AND
+        :new.ÁÖ¹®¹øÈ£ = ¹è¼Û¿äÃ»¼%.ÁÖ¹®¹øÈ£ AND
+        :new.EXCCLC_NO = ¹è¼Û¿äÃ»¼%.EXCCLC_NO;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert ¹è¼Û°ü¸® because ¹è¼Û¿äÃ»¼% does not exist.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_¹è¼Û°ü¸® AFTER UPDATE ON ¹è¼Û°ü¸® for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on ¹è¼Û°ü¸® 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* ¹è¼Û°ü¸®  ¹è¼ÛÁ¤»ê on parent update restrict */
+  /* ERWIN_RELATION:CHECKSUM="0002c5b6", PARENT_OWNER="", PARENT_TABLE="¹è¼Û°ü¸®"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼ÛÁ¤»ê"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_95", FK_COLUMNS="¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£""¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ <> :new.¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ OR 
+    :old.¹è¼Û¹øÈ£ <> :new.¹è¼Û¹øÈ£ OR 
+    :old.ÁÖ¹®¹øÈ£ <> :new.ÁÖ¹®¹øÈ£ OR 
+    :old.EXCCLC_NO <> :new.EXCCLC_NO
+  THEN
+    SELECT count(*) INTO NUMROWS
+      FROM ¹è¼ÛÁ¤»ê
+      WHERE
+        /*  %JoinFKPK(¹è¼ÛÁ¤»ê,:%Old," = "," AND") */
+        ¹è¼ÛÁ¤»ê.¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ = :old.¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ AND
+        ¹è¼ÛÁ¤»ê.¹è¼Û¹øÈ£ = :old.¹è¼Û¹øÈ£ AND
+        ¹è¼ÛÁ¤»ê.ÁÖ¹®¹øÈ£ = :old.ÁÖ¹®¹øÈ£ AND
+        ¹è¼ÛÁ¤»ê.EXCCLC_NO = :old.EXCCLC_NO;
+    IF (NUMROWS > 0)
+    THEN 
+      raise_application_error(
+        -20005,
+        'Cannot update ¹è¼Û°ü¸® because ¹è¼ÛÁ¤»ê exists.'
+      );
+    END IF;
+  END IF;
+
+  /* ERwin Builtin Trigger */
+  /* ¹è¼Û¿äÃ»¼%  ¹è¼Û°ü¸® on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="¹è¼Û¿äÃ»¼%"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼Û°ü¸®"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+  SELECT count(*) INTO NUMROWS
+    FROM ¹è¼Û¿äÃ»¼%
+    WHERE
+      /* %JoinFKPK(:%New,¹è¼Û¿äÃ»¼%," = "," AND") */
+      :new.¹è¼Û¹øÈ£ = ¹è¼Û¿äÃ»¼%.¹è¼Û¹øÈ£ AND
+      :new.ÁÖ¹®¹øÈ£ = ¹è¼Û¿äÃ»¼%.ÁÖ¹®¹øÈ£ AND
+      :new.EXCCLC_NO = ¹è¼Û¿äÃ»¼%.EXCCLC_NO;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update ¹è¼Û°ü¸® because ¹è¼Û¿äÃ»¼% does not exist.'
+    );
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER  tD_¹è¼Û¿äÃ»¼­ AFTER DELETE ON ¹è¼Û¿äÃ»¼­ for each row
+-- ERwin Builtin Trigger
+-- DELETE trigger on ¹è¼Û¿äÃ»¼­ 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* ¹è¼Û¿äÃ»¼%  ¹è¼Û°ü¸® on parent delete cascade */
+    /* ERWIN_RELATION:CHECKSUM="0001aaa6", PARENT_OWNER="", PARENT_TABLE="¹è¼Û¿äÃ»¼%"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼Û°ü¸®"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+    DELETE FROM ¹è¼Û°ü¸®
+      WHERE
+        /*  %JoinFKPK(¹è¼Û°ü¸®,:%Old," = "," AND") */
+        ¹è¼Û°ü¸®.¹è¼Û¹øÈ£ = :old.¹è¼Û¹øÈ£ AND
+        ¹è¼Û°ü¸®.ÁÖ¹®¹øÈ£ = :old.ÁÖ¹®¹øÈ£ AND
+        ¹è¼Û°ü¸®.EXCCLC_NO = :old.EXCCLC_NO;
+
+    /* ERwin Builtin Trigger */
+    /* ¹è¼Û¿äÃ»¼%  ÁöÇÏÃ¶»óÁ¡ on parent delete cascade */
+    /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="¹è¼Û¿äÃ»¼%"
+    CHILD_OWNER="", CHILD_TABLE="ÁöÇÏÃ¶»óÁ¡"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+    DELETE FROM ÁöÇÏÃ¶»óÁ¡
+      WHERE
+        /*  %JoinFKPK(ÁöÇÏÃ¶»óÁ¡,:%Old," = "," AND") */
+        ÁöÇÏÃ¶»óÁ¡.¹è¼Û¹øÈ£ = :old.¹è¼Û¹øÈ£ AND
+        ÁöÇÏÃ¶»óÁ¡.ÁÖ¹®¹øÈ£ = :old.ÁÖ¹®¹øÈ£ AND
+        ÁöÇÏÃ¶»óÁ¡.EXCCLC_NO = :old.EXCCLC_NO;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tI_¹è¼Û¿äÃ»¼­ BEFORE INSERT ON ¹è¼Û¿äÃ»¼­ for each row
+-- ERwin Builtin Trigger
+-- INSERT trigger on ¹è¼Û¿äÃ»¼­ 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* ÁÖ¹®¼%¾ç½Ä  ¹è¼Û¿äÃ»¼% on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="00011133", PARENT_OWNER="", PARENT_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼Û¿äÃ»¼%"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_10", FK_COLUMNS="ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM ÁÖ¹®¼%¾ç½Ä
+      WHERE
+        /* %JoinFKPK(:%New,ÁÖ¹®¼%¾ç½Ä," = "," AND") */
+        :new.ÁÖ¹®¹øÈ£ = ÁÖ¹®¼%¾ç½Ä.ÁÖ¹®¹øÈ£ AND
+        :new.EXCCLC_NO = ÁÖ¹®¼%¾ç½Ä.EXCCLC_NO;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert ¹è¼Û¿äÃ»¼% because ÁÖ¹®¼%¾ç½Ä does not exist.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_¹è¼Û¿äÃ»¼­ AFTER UPDATE ON ¹è¼Û¿äÃ»¼­ for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on ¹è¼Û¿äÃ»¼­ 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* ¹è¼Û¿äÃ»¼%  ¹è¼Û°ü¸® on parent update cascade */
+  /* ERWIN_RELATION:CHECKSUM="0003e11c", PARENT_OWNER="", PARENT_TABLE="¹è¼Û¿äÃ»¼%"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼Û°ü¸®"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.¹è¼Û¹øÈ£ <> :new.¹è¼Û¹øÈ£ OR 
+    :old.ÁÖ¹®¹øÈ£ <> :new.ÁÖ¹®¹øÈ£ OR 
+    :old.EXCCLC_NO <> :new.EXCCLC_NO
+  THEN
+    UPDATE ¹è¼Û°ü¸®
+      SET
+        /*  %JoinFKPK(¹è¼Û°ü¸®,:%New," = ",",") */
+        ¹è¼Û°ü¸®.¹è¼Û¹øÈ£ = :new.¹è¼Û¹øÈ£,
+        ¹è¼Û°ü¸®.ÁÖ¹®¹øÈ£ = :new.ÁÖ¹®¹øÈ£,
+        ¹è¼Û°ü¸®.EXCCLC_NO = :new.EXCCLC_NO
+      WHERE
+        /*  %JoinFKPK(¹è¼Û°ü¸®,:%Old," = "," AND") */
+        ¹è¼Û°ü¸®.¹è¼Û¹øÈ£ = :old.¹è¼Û¹øÈ£ AND
+        ¹è¼Û°ü¸®.ÁÖ¹®¹øÈ£ = :old.ÁÖ¹®¹øÈ£ AND
+        ¹è¼Û°ü¸®.EXCCLC_NO = :old.EXCCLC_NO;
+  END IF;
+
+  /* ERwin Builtin Trigger */
+  /* ¹è¼Û¿äÃ»¼%  ÁöÇÏÃ¶»óÁ¡ on parent update cascade */
+  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="¹è¼Û¿äÃ»¼%"
+    CHILD_OWNER="", CHILD_TABLE="ÁöÇÏÃ¶»óÁ¡"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.¹è¼Û¹øÈ£ <> :new.¹è¼Û¹øÈ£ OR 
+    :old.ÁÖ¹®¹øÈ£ <> :new.ÁÖ¹®¹øÈ£ OR 
+    :old.EXCCLC_NO <> :new.EXCCLC_NO
+  THEN
+    UPDATE ÁöÇÏÃ¶»óÁ¡
+      SET
+        /*  %JoinFKPK(ÁöÇÏÃ¶»óÁ¡,:%New," = ",",") */
+        ÁöÇÏÃ¶»óÁ¡.¹è¼Û¹øÈ£ = :new.¹è¼Û¹øÈ£,
+        ÁöÇÏÃ¶»óÁ¡.ÁÖ¹®¹øÈ£ = :new.ÁÖ¹®¹øÈ£,
+        ÁöÇÏÃ¶»óÁ¡.EXCCLC_NO = :new.EXCCLC_NO
+      WHERE
+        /*  %JoinFKPK(ÁöÇÏÃ¶»óÁ¡,:%Old," = "," AND") */
+        ÁöÇÏÃ¶»óÁ¡.¹è¼Û¹øÈ£ = :old.¹è¼Û¹øÈ£ AND
+        ÁöÇÏÃ¶»óÁ¡.ÁÖ¹®¹øÈ£ = :old.ÁÖ¹®¹øÈ£ AND
+        ÁöÇÏÃ¶»óÁ¡.EXCCLC_NO = :old.EXCCLC_NO;
+  END IF;
+
+  /* ERwin Builtin Trigger */
+  /* ÁÖ¹®¼%¾ç½Ä  ¹è¼Û¿äÃ»¼% on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼Û¿äÃ»¼%"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_10", FK_COLUMNS="ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+  SELECT count(*) INTO NUMROWS
+    FROM ÁÖ¹®¼%¾ç½Ä
+    WHERE
+      /* %JoinFKPK(:%New,ÁÖ¹®¼%¾ç½Ä," = "," AND") */
+      :new.ÁÖ¹®¹øÈ£ = ÁÖ¹®¼%¾ç½Ä.ÁÖ¹®¹øÈ£ AND
+      :new.EXCCLC_NO = ÁÖ¹®¼%¾ç½Ä.EXCCLC_NO;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update ¹è¼Û¿äÃ»¼% because ÁÖ¹®¼%¾ç½Ä does not exist.'
+    );
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER tI_¹è¼ÛÁ¤»ê BEFORE INSERT ON ¹è¼ÛÁ¤»ê for each row
+-- ERwin Builtin Trigger
+-- INSERT trigger on ¹è¼ÛÁ¤»ê 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* ¹è¼Û°ü¸®  ¹è¼ÛÁ¤»ê on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="00013241", PARENT_OWNER="", PARENT_TABLE="¹è¼Û°ü¸®"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼ÛÁ¤»ê"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_95", FK_COLUMNS="¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£""¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM ¹è¼Û°ü¸®
+      WHERE
+        /* %JoinFKPK(:%New,¹è¼Û°ü¸®," = "," AND") */
+        :new.¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ = ¹è¼Û°ü¸®.¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ AND
+        :new.¹è¼Û¹øÈ£ = ¹è¼Û°ü¸®.¹è¼Û¹øÈ£ AND
+        :new.ÁÖ¹®¹øÈ£ = ¹è¼Û°ü¸®.ÁÖ¹®¹øÈ£ AND
+        :new.EXCCLC_NO = ¹è¼Û°ü¸®.EXCCLC_NO;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert ¹è¼ÛÁ¤»ê because ¹è¼Û°ü¸® does not exist.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_¹è¼ÛÁ¤»ê AFTER UPDATE ON ¹è¼ÛÁ¤»ê for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on ¹è¼ÛÁ¤»ê 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* ¹è¼Û°ü¸®  ¹è¼ÛÁ¤»ê on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00013440", PARENT_OWNER="", PARENT_TABLE="¹è¼Û°ü¸®"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼ÛÁ¤»ê"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_95", FK_COLUMNS="¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£""¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+  SELECT count(*) INTO NUMROWS
+    FROM ¹è¼Û°ü¸®
+    WHERE
+      /* %JoinFKPK(:%New,¹è¼Û°ü¸®," = "," AND") */
+      :new.¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ = ¹è¼Û°ü¸®.¹è¼Û¾÷Ã¼_»ç¾÷ÀÚ_¹øÈ£ AND
+      :new.¹è¼Û¹øÈ£ = ¹è¼Û°ü¸®.¹è¼Û¹øÈ£ AND
+      :new.ÁÖ¹®¹øÈ£ = ¹è¼Û°ü¸®.ÁÖ¹®¹øÈ£ AND
+      :new.EXCCLC_NO = ¹è¼Û°ü¸®.EXCCLC_NO;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update ¹è¼ÛÁ¤»ê because ¹è¼Û°ü¸® does not exist.'
+    );
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER tI_ºÎÈ¸¿ø BEFORE INSERT ON ºÎÈ¸¿ø for each row
+-- ERwin Builtin Trigger
+-- INSERT trigger on ºÎÈ¸¿ø 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* È¸¿ø  ºÎÈ¸¿ø on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="0000e124", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="ºÎÈ¸¿ø"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="È¸¿ø¹øÈ£" */
+    SELECT count(*) INTO NUMROWS
+      FROM È¸¿ø
+      WHERE
+        /* %JoinFKPK(:%New,È¸¿ø," = "," AND") */
+        :new.È¸¿ø¹øÈ£ = È¸¿ø.È¸¿ø¹øÈ£;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert ºÎÈ¸¿ø because È¸¿ø does not exist.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_ºÎÈ¸¿ø AFTER UPDATE ON ºÎÈ¸¿ø for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on ºÎÈ¸¿ø 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* È¸¿ø  ºÎÈ¸¿ø on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="0000db5b", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="ºÎÈ¸¿ø"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="È¸¿ø¹øÈ£" */
+  SELECT count(*) INTO NUMROWS
+    FROM È¸¿ø
+    WHERE
+      /* %JoinFKPK(:%New,È¸¿ø," = "," AND") */
+      :new.È¸¿ø¹øÈ£ = È¸¿ø.È¸¿ø¹øÈ£;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update ºÎÈ¸¿ø because È¸¿ø does not exist.'
+    );
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER tI_Á¤È¸¿ø BEFORE INSERT ON Á¤È¸¿ø for each row
+-- ERwin Builtin Trigger
+-- INSERT trigger on Á¤È¸¿ø 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* È¸¿ø  Á¤È¸¿ø on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="0000e456", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="Á¤È¸¿ø"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="È¸¿ø¹øÈ£" */
+    SELECT count(*) INTO NUMROWS
+      FROM È¸¿ø
+      WHERE
+        /* %JoinFKPK(:%New,È¸¿ø," = "," AND") */
+        :new.È¸¿ø¹øÈ£ = È¸¿ø.È¸¿ø¹øÈ£;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert Á¤È¸¿ø because È¸¿ø does not exist.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_Á¤È¸¿ø AFTER UPDATE ON Á¤È¸¿ø for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on Á¤È¸¿ø 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* È¸¿ø  Á¤È¸¿ø on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="0000e1a9", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="Á¤È¸¿ø"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="È¸¿ø¹øÈ£" */
+  SELECT count(*) INTO NUMROWS
+    FROM È¸¿ø
+    WHERE
+      /* %JoinFKPK(:%New,È¸¿ø," = "," AND") */
+      :new.È¸¿ø¹øÈ£ = È¸¿ø.È¸¿ø¹øÈ£;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update Á¤È¸¿ø because È¸¿ø does not exist.'
+    );
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER  tD_ÁÖ¹®¼­¾ç½Ä AFTER DELETE ON ÁÖ¹®¼­¾ç½Ä for each row
+-- ERwin Builtin Trigger
+-- DELETE trigger on ÁÖ¹®¼­¾ç½Ä 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* ÁÖ¹®¼%¾ç½Ä  ¹è¼Û¿äÃ»¼% on parent delete restrict */
+    /* ERWIN_RELATION:CHECKSUM="0000f552", PARENT_OWNER="", PARENT_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼Û¿äÃ»¼%"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_10", FK_COLUMNS="ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM ¹è¼Û¿äÃ»¼%
+      WHERE
+        /*  %JoinFKPK(¹è¼Û¿äÃ»¼%,:%Old," = "," AND") */
+        ¹è¼Û¿äÃ»¼%.ÁÖ¹®¹øÈ£ = :old.ÁÖ¹®¹øÈ£ AND
+        ¹è¼Û¿äÃ»¼%.EXCCLC_NO = :old.EXCCLC_NO;
+    IF (NUMROWS > 0)
+    THEN
+      raise_application_error(
+        -20001,
+        'Cannot delete ÁÖ¹®¼%¾ç½Ä because ¹è¼Û¿äÃ»¼% exists.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tI_ÁÖ¹®¼­¾ç½Ä BEFORE INSERT ON ÁÖ¹®¼­¾ç½Ä for each row
+-- ERwin Builtin Trigger
+-- INSERT trigger on ÁÖ¹®¼­¾ç½Ä 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* SM_DTLS  ÁÖ¹®¼%¾ç½Ä on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="0001deda", PARENT_OWNER="", PARENT_TABLE="SM_DTLS"
+    CHILD_OWNER="", CHILD_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_23", FK_COLUMNS="EXCCLC_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM SM_DTLS
+      WHERE
+        /* %JoinFKPK(:%New,SM_DTLS," = "," AND") */
+        :new.EXCCLC_NO = SM_DTLS.EXCCLC_NO;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert ÁÖ¹®¼%¾ç½Ä because SM_DTLS does not exist.'
+      );
+    END IF;
+
+    /* ERwin Builtin Trigger */
+    /* È¸¿ø  ÁÖ¹®¼%¾ç½Ä on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_9", FK_COLUMNS="È¸¿ø¹øÈ£" */
+    SELECT count(*) INTO NUMROWS
+      FROM È¸¿ø
+      WHERE
+        /* %JoinFKPK(:%New,È¸¿ø," = "," AND") */
+        :new.È¸¿ø¹øÈ£ = È¸¿ø.È¸¿ø¹øÈ£;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert ÁÖ¹®¼%¾ç½Ä because È¸¿ø does not exist.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_ÁÖ¹®¼­¾ç½Ä AFTER UPDATE ON ÁÖ¹®¼­¾ç½Ä for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on ÁÖ¹®¼­¾ç½Ä 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* ÁÖ¹®¼%¾ç½Ä  ¹è¼Û¿äÃ»¼% on parent update restrict */
+  /* ERWIN_RELATION:CHECKSUM="000316c5", PARENT_OWNER="", PARENT_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    CHILD_OWNER="", CHILD_TABLE="¹è¼Û¿äÃ»¼%"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_10", FK_COLUMNS="ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.ÁÖ¹®¹øÈ£ <> :new.ÁÖ¹®¹øÈ£ OR 
+    :old.EXCCLC_NO <> :new.EXCCLC_NO
+  THEN
+    SELECT count(*) INTO NUMROWS
+      FROM ¹è¼Û¿äÃ»¼%
+      WHERE
+        /*  %JoinFKPK(¹è¼Û¿äÃ»¼%,:%Old," = "," AND") */
+        ¹è¼Û¿äÃ»¼%.ÁÖ¹®¹øÈ£ = :old.ÁÖ¹®¹øÈ£ AND
+        ¹è¼Û¿äÃ»¼%.EXCCLC_NO = :old.EXCCLC_NO;
+    IF (NUMROWS > 0)
+    THEN 
+      raise_application_error(
+        -20005,
+        'Cannot update ÁÖ¹®¼%¾ç½Ä because ¹è¼Û¿äÃ»¼% exists.'
+      );
+    END IF;
+  END IF;
+
+  /* ERwin Builtin Trigger */
+  /* SM_DTLS  ÁÖ¹®¼%¾ç½Ä on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="SM_DTLS"
+    CHILD_OWNER="", CHILD_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_23", FK_COLUMNS="EXCCLC_NO" */
+  SELECT count(*) INTO NUMROWS
+    FROM SM_DTLS
+    WHERE
+      /* %JoinFKPK(:%New,SM_DTLS," = "," AND") */
+      :new.EXCCLC_NO = SM_DTLS.EXCCLC_NO;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update ÁÖ¹®¼%¾ç½Ä because SM_DTLS does not exist.'
+    );
+  END IF;
+
+  /* ERwin Builtin Trigger */
+  /* È¸¿ø  ÁÖ¹®¼%¾ç½Ä on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_9", FK_COLUMNS="È¸¿ø¹øÈ£" */
+  SELECT count(*) INTO NUMROWS
+    FROM È¸¿ø
+    WHERE
+      /* %JoinFKPK(:%New,È¸¿ø," = "," AND") */
+      :new.È¸¿ø¹øÈ£ = È¸¿ø.È¸¿ø¹øÈ£;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update ÁÖ¹®¼%¾ç½Ä because È¸¿ø does not exist.'
+    );
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER tI_ÁöÇÏÃ¶»óÁ¡ BEFORE INSERT ON ÁöÇÏÃ¶»óÁ¡ for each row
+-- ERwin Builtin Trigger
+-- INSERT trigger on ÁöÇÏÃ¶»óÁ¡ 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* ¹è¼Û¿äÃ»¼%  ÁöÇÏÃ¶»óÁ¡ on child insert restrict */
+    /* ERWIN_RELATION:CHECKSUM="00011e98", PARENT_OWNER="", PARENT_TABLE="¹è¼Û¿äÃ»¼%"
+    CHILD_OWNER="", CHILD_TABLE="ÁöÇÏÃ¶»óÁ¡"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+    SELECT count(*) INTO NUMROWS
+      FROM ¹è¼Û¿äÃ»¼%
+      WHERE
+        /* %JoinFKPK(:%New,¹è¼Û¿äÃ»¼%," = "," AND") */
+        :new.¹è¼Û¹øÈ£ = ¹è¼Û¿äÃ»¼%.¹è¼Û¹øÈ£ AND
+        :new.ÁÖ¹®¹øÈ£ = ¹è¼Û¿äÃ»¼%.ÁÖ¹®¹øÈ£ AND
+        :new.EXCCLC_NO = ¹è¼Û¿äÃ»¼%.EXCCLC_NO;
+    IF (
+      /* %NotnullFK(:%New," IS NOT NULL AND") */
+      
+      NUMROWS = 0
+    )
+    THEN
+      raise_application_error(
+        -20002,
+        'Cannot insert ÁöÇÏÃ¶»óÁ¡ because ¹è¼Û¿äÃ»¼% does not exist.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_ÁöÇÏÃ¶»óÁ¡ AFTER UPDATE ON ÁöÇÏÃ¶»óÁ¡ for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on ÁöÇÏÃ¶»óÁ¡ 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* ¹è¼Û¿äÃ»¼%  ÁöÇÏÃ¶»óÁ¡ on child update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00011e82", PARENT_OWNER="", PARENT_TABLE="¹è¼Û¿äÃ»¼%"
+    CHILD_OWNER="", CHILD_TABLE="ÁöÇÏÃ¶»óÁ¡"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="¹è¼Û¹øÈ£""ÁÖ¹®¹øÈ£""EXCCLC_NO" */
+  SELECT count(*) INTO NUMROWS
+    FROM ¹è¼Û¿äÃ»¼%
+    WHERE
+      /* %JoinFKPK(:%New,¹è¼Û¿äÃ»¼%," = "," AND") */
+      :new.¹è¼Û¹øÈ£ = ¹è¼Û¿äÃ»¼%.¹è¼Û¹øÈ£ AND
+      :new.ÁÖ¹®¹øÈ£ = ¹è¼Û¿äÃ»¼%.ÁÖ¹®¹øÈ£ AND
+      :new.EXCCLC_NO = ¹è¼Û¿äÃ»¼%.EXCCLC_NO;
+  IF (
+    /* %NotnullFK(:%New," IS NOT NULL AND") */
+    
+    NUMROWS = 0
+  )
+  THEN
+    raise_application_error(
+      -20007,
+      'Cannot update ÁöÇÏÃ¶»óÁ¡ because ¹è¼Û¿äÃ»¼% does not exist.'
+    );
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+
+CREATE  TRIGGER  tD_È¸¿ø AFTER DELETE ON È¸¿ø for each row
+-- ERwin Builtin Trigger
+-- DELETE trigger on È¸¿ø 
+DECLARE NUMROWS INTEGER;
+BEGIN
+    /* ERwin Builtin Trigger */
+    /* È¸¿ø  ºÎÈ¸¿ø on parent delete cascade */
+    /* ERWIN_RELATION:CHECKSUM="00022f60", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="ºÎÈ¸¿ø"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="È¸¿ø¹øÈ£" */
+    DELETE FROM ºÎÈ¸¿ø
+      WHERE
+        /*  %JoinFKPK(ºÎÈ¸¿ø,:%Old," = "," AND") */
+        ºÎÈ¸¿ø.È¸¿ø¹øÈ£ = :old.È¸¿ø¹øÈ£;
+
+    /* ERwin Builtin Trigger */
+    /* È¸¿ø  Á¤È¸¿ø on parent delete cascade */
+    /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="Á¤È¸¿ø"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="È¸¿ø¹øÈ£" */
+    DELETE FROM Á¤È¸¿ø
+      WHERE
+        /*  %JoinFKPK(Á¤È¸¿ø,:%Old," = "," AND") */
+        Á¤È¸¿ø.È¸¿ø¹øÈ£ = :old.È¸¿ø¹øÈ£;
+
+    /* ERwin Builtin Trigger */
+    /* È¸¿ø  ÁÖ¹®¼%¾ç½Ä on parent delete restrict */
+    /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_9", FK_COLUMNS="È¸¿ø¹øÈ£" */
+    SELECT count(*) INTO NUMROWS
+      FROM ÁÖ¹®¼%¾ç½Ä
+      WHERE
+        /*  %JoinFKPK(ÁÖ¹®¼%¾ç½Ä,:%Old," = "," AND") */
+        ÁÖ¹®¼%¾ç½Ä.È¸¿ø¹øÈ£ = :old.È¸¿ø¹øÈ£;
+    IF (NUMROWS > 0)
+    THEN
+      raise_application_error(
+        -20001,
+        'Cannot delete È¸¿ø because ÁÖ¹®¼%¾ç½Ä exists.'
+      );
+    END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
+CREATE  TRIGGER tU_È¸¿ø AFTER UPDATE ON È¸¿ø for each row
+-- ERwin Builtin Trigger
+-- UPDATE trigger on È¸¿ø 
+DECLARE NUMROWS INTEGER;
+BEGIN
+  /* ERwin Builtin Trigger */
+  /* È¸¿ø  ºÎÈ¸¿ø on parent update cascade */
+  /* ERWIN_RELATION:CHECKSUM="0002df2f", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="ºÎÈ¸¿ø"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="È¸¿ø¹øÈ£" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.È¸¿ø¹øÈ£ <> :new.È¸¿ø¹øÈ£
+  THEN
+    UPDATE ºÎÈ¸¿ø
+      SET
+        /*  %JoinFKPK(ºÎÈ¸¿ø,:%New," = ",",") */
+        ºÎÈ¸¿ø.È¸¿ø¹øÈ£ = :new.È¸¿ø¹øÈ£
+      WHERE
+        /*  %JoinFKPK(ºÎÈ¸¿ø,:%Old," = "," AND") */
+        ºÎÈ¸¿ø.È¸¿ø¹øÈ£ = :old.È¸¿ø¹øÈ£;
+  END IF;
+
+  /* ERwin Builtin Trigger */
+  /* È¸¿ø  Á¤È¸¿ø on parent update cascade */
+  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="Á¤È¸¿ø"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="is_a", FK_COLUMNS="È¸¿ø¹øÈ£" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.È¸¿ø¹øÈ£ <> :new.È¸¿ø¹øÈ£
+  THEN
+    UPDATE Á¤È¸¿ø
+      SET
+        /*  %JoinFKPK(Á¤È¸¿ø,:%New," = ",",") */
+        Á¤È¸¿ø.È¸¿ø¹øÈ£ = :new.È¸¿ø¹øÈ£
+      WHERE
+        /*  %JoinFKPK(Á¤È¸¿ø,:%Old," = "," AND") */
+        Á¤È¸¿ø.È¸¿ø¹øÈ£ = :old.È¸¿ø¹øÈ£;
+  END IF;
+
+  /* ERwin Builtin Trigger */
+  /* È¸¿ø  ÁÖ¹®¼%¾ç½Ä on parent update restrict */
+  /* ERWIN_RELATION:CHECKSUM="00000000", PARENT_OWNER="", PARENT_TABLE="È¸¿ø"
+    CHILD_OWNER="", CHILD_TABLE="ÁÖ¹®¼%¾ç½Ä"
+    P2C_VERB_PHRASE="", C2P_VERB_PHRASE="", 
+    FK_CONSTRAINT="R_9", FK_COLUMNS="È¸¿ø¹øÈ£" */
+  IF
+    /* %JoinPKPK(:%Old,:%New," <> "," OR ") */
+    :old.È¸¿ø¹øÈ£ <> :new.È¸¿ø¹øÈ£
+  THEN
+    SELECT count(*) INTO NUMROWS
+      FROM ÁÖ¹®¼%¾ç½Ä
+      WHERE
+        /*  %JoinFKPK(ÁÖ¹®¼%¾ç½Ä,:%Old," = "," AND") */
+        ÁÖ¹®¼%¾ç½Ä.È¸¿ø¹øÈ£ = :old.È¸¿ø¹øÈ£;
+    IF (NUMROWS > 0)
+    THEN 
+      raise_application_error(
+        -20005,
+        'Cannot update È¸¿ø because ÁÖ¹®¼%¾ç½Ä exists.'
+      );
+    END IF;
+  END IF;
+
+
+-- ERwin Builtin Trigger
+END;
+/
+
